@@ -1,18 +1,27 @@
 <?php
 
-include '../model/article-manager.php';
-
-function index() 
-{   
-    $articles = new Article();
-
-    $articles->getAll();
-    
-    // PRESENTATION DE LA PAGE
-    include '../view/blog.html.php';
-}
-
-function article() 
+class BlogController 
 {
-    include '../view/article.html.php';
+    
+    public function __construct ()
+    {
+        include '../model/article-manager.php';
+    }
+
+    public function index() 
+    {   
+        $articles = new ArticleManager();
+        $articles->getAll();
+        
+        include '../view/blog.html.php';
+    }
+    
+    public function article() 
+    {
+        $article = new ArticleManager();
+    
+        $article = $article->getElementByID($_GET['id']);
+    
+        include '../view/article.html.php';
+    }
 }

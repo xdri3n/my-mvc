@@ -1,26 +1,28 @@
 <?php
 
-try 
+class ArticleManager
 {
-    // MODELE => new PDO('mysql:host=myhost;dbname=mydb', 'login', 'password';
-    $pdo = new PDO('mysql:host=localhost;dbname=mvc-blog', 'root', 'root', 
-    [
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-}
-catch (exception $pe)
-{
-    echo 'Erreur : ', $pe->getMessage();
-}
-
-
-class Article 
-{
+    private PDO $pdo;
+    
+    public function __contruct()
+    {
+        try 
+        {
+            $pdo = new PDO('mysql:host=localhost;dbname=mvc-blog', 'root', 'root', 
+            [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]);
+        }
+        catch (exception $pe)
+        {
+            echo 'Erreur : ', $pe->getMessage();
+        }
+    }
     
     public function getAll() 
     {
         // CONNEXION A LA BDD
-        $pdo = $GLOBALS['pdo'];
+        $pdo = $this->pdo;
     
         $sql = 'SELECT * FROM article';
         $stmt = $pdo->prepare($sql);

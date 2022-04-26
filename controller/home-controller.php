@@ -1,6 +1,10 @@
 <?php
 
-function index() 
+class HomeController 
 {
-    include '../view/index.html.php';
+    public function index() 
+    {
+        include '../view/index.html.php';
+    }
+
 }
